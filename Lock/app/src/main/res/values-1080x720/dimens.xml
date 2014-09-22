@@ -4,6 +4,6 @@
     <dimen name="ios_time_textsize">78.0dip</dimen>
     <dimen name="ios_time_margintop">30.0dip</dimen>
     <dimen name="ios_date_textsize">22.0dip</dimen>
-    <dimen name="ios_sliding_textsize">24.0sp</dimen>
+    <dimen name="ios_sliding_textsize">23.0sp</dimen>
     <dimen name="ios_sliding_marginbottom">30.0dip</dimen>
 </resources>
