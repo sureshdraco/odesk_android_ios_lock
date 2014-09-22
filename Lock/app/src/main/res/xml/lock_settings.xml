@@ -1,15 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:coomix="http://schemas.android.com/apk/res/com.sydneyapps.ios8.lockscreen">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:coomix="http://schemas.android.com/apk/res/com.sydneyapps.ios8.lockscreen">
     <PreferenceCategory android:title="@string/settins">
-        <Preference android:title="@string/preview" android:key="key_preview" />
-        <CheckBoxPreference android:title="@string/enable_screen" android:key="key_enable" android:defaultValue="true" />
-        <Preference android:title="@string/gallery_title" android:key="key_select_photo" />
+        <Preference
+            android:title="@string/preview"
+            android:key="key_preview" />
+        <CheckBoxPreference
+            android:title="@string/enable_screen"
+            android:key="key_enable"
+            android:defaultValue="true" />
+        <Preference
+            android:title="@string/gallery_title"
+            android:key="key_select_photo" />
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/feedback_setting">
-        <Preference android:title="@string/share" android:key="key_share" />
-        <Preference android:title="@string/topapp" android:key="key_topapps" />
-        <Preference android:title="@string/moreapp" android:key="key_moreapps" />
+        <Preference
+            android:title="@string/share"
+            android:key="key_share" />
+        <Preference
+            android:title="@string/topapp"
+            android:key="key_topapps" />
+        <Preference
+            android:title="@string/moreapp"
+            android:key="key_moreapps" />
     </PreferenceCategory>
 </PreferenceScreen>

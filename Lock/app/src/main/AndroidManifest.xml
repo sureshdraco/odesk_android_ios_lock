@@ -22,7 +22,13 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".view.LockScreenActivity" />
+        <activity
+            android:name=".view.LockScreenActivity"
+            android:excludeFromRecents="true" />
+
+        <activity
+            android:name=".view.SettingsActivity"
+            android:theme="@android:style/Theme.Black.NoTitleBar" />
 
         <service android:name=".controller.MyService" />
 

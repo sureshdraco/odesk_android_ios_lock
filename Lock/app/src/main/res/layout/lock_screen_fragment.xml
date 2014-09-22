@@ -3,7 +3,8 @@
     android:id="@id/main_layout"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
         android:orientation="vertical"
@@ -39,9 +40,10 @@
                 android:textColor="#33000000"
                 android:gravity="center"
                 android:layout_gravity="center"
+                app:font="roboto_normal"
                 android:id="@id/slide_unlock"
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
+                android:layout_height="wrap_content"
                 android:text="@string/slide_to_unlock" />
         </RelativeLayout>
 

@@ -52,5 +52,6 @@
     <string name="preview_label">Preview</string>
     <string name="wallet_buy_button_place_holder">Buy with Google</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="wallpaper">wallPaper</string>
 
 </resources>

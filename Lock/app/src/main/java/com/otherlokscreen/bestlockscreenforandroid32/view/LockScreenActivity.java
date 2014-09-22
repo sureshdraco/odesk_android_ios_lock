@@ -3,12 +3,15 @@ package com.otherlokscreen.bestlockscreenforandroid32.view;
 import com.otherlokscreen.bestlockscreenforandroid32.R;
 import com.otherlokscreen.bestlockscreenforandroid32.controller.MyService;
 
+import android.app.WallpaperManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.drawable.Drawable;
 import android.os.BatteryManager;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -16,6 +19,7 @@ import android.support.v4.view.ViewPager;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.view.KeyEvent;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
 
@@ -26,6 +30,7 @@ public class LockScreenActivity extends FragmentActivity {
 
     private TextView operatorName, battery;
     private ViewPager viewPager;
+    private View backgroundWallpaper;
     private boolean isUnlock = false;
 
     @Override
@@ -48,6 +53,8 @@ public class LockScreenActivity extends FragmentActivity {
     }
 
     private void initView() {
+        backgroundWallpaper = findViewById(R.id.wallpaper);
+        backgroundWallpaper.setBackgroundDrawable(getSelectedWallpaper());
         operatorName = (TextView) findViewById(R.id.operator);
         battery = (TextView) findViewById(R.id.battery_value);
         viewPager = (ViewPager) findViewById(R.id.pager);
@@ -84,6 +91,20 @@ public class LockScreenActivity extends FragmentActivity {
             }
         });
         viewPager.setCurrentItem(2);
+    }
+
+    private Drawable getSelectedWallpaper() {
+        String selectedWallpaper = PreferenceManager.getDefaultSharedPreferences(getApplicationContext())
+                .getString(getString(R.string.wallpaper), "Wallpaper1");
+        if (selectedWallpaper.equals("System Wallpaper")) {
+            return WallpaperManager.getInstance(getApplicationContext()).getDrawable();
+        } else if (selectedWallpaper.equals("Wallpaper1")) {
+            return getResources().getDrawable(R.drawable.wallpaper01);
+        } else if (selectedWallpaper.equals("Wallpaper2")) {
+            return getResources().getDrawable(R.drawable.wallpaper02);
+        } else {
+            return getResources().getDrawable(R.drawable.wallpaper03);
+        }
     }
 
     private BroadcastReceiver batInfoReceiver = new BroadcastReceiver() {

@@ -103,7 +103,7 @@
                         android:text="@string/setting_title_label"
                         android:drawableTop="@drawable/ic_settings"
                         android:layout_weight="1.0"
-                        android:onClick="onClick"
+                        android:onClick="onClickSettings"
                         style="@style/icon_btn" />
                 </LinearLayout>
 
@@ -122,7 +122,7 @@
                         android:text="@string/top_apps_title_label"
                         android:drawableTop="@drawable/ic_freeapps"
                         android:layout_weight="1.0"
-                        android:onClick="onClick"
+                        android:onClick="onClickGreatApps"
                         style="@style/icon_btn" />
 
                     <Button
@@ -135,7 +135,7 @@
                         android:text="@string/appsby_syne_title_label"
                         android:drawableTop="@drawable/ic_appbysyne"
                         android:layout_weight="1.0"
-                        android:onClick="onClick"
+                        android:onClick="onClickSydApps"
                         style="@style/icon_btn" />
                 </LinearLayout>
 
@@ -194,7 +194,7 @@
                             android:drawableLeft="@drawable/ic_remote_tv"
                             android:drawablePadding="8.0dip"
                             android:layout_weight="1.0"
-                            android:onClick="onClick" />
+                            android:onClick="onClickRemoteControl" />
 
                         <Button
                             android:textSize="14.0sp"
@@ -216,7 +216,7 @@
                             android:drawableLeft="@drawable/ic_firefly"
                             android:drawablePadding="8.0dip"
                             android:layout_weight="1.0"
-                            android:onClick="onClick" />
+                            android:onClick="onClickLast" />
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>

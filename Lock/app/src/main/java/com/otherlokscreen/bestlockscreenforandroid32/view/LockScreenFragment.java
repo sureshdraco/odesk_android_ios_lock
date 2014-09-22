@@ -1,19 +1,28 @@
 package com.otherlokscreen.bestlockscreenforandroid32.view;
 
 
+import android.animation.ObjectAnimator;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
+import android.graphics.Color;
+import android.hardware.Camera;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.otherlokscreen.bestlockscreenforandroid32.R;
+import com.otherlokscreen.bestlockscreenforandroid32.util.OnSwipeTouchListener;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -23,7 +32,8 @@ import java.util.Date;
  */
 public class LockScreenFragment extends Fragment {
 
-    private TextView time, date;
+    private TextView time, date, slideToUnlock;
+    private Camera mCamera;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -72,6 +82,32 @@ public class LockScreenFragment extends Fragment {
     private void initView() {
         time = (TextView) getActivity().findViewById(R.id.timeDisplay);
         date = (TextView) getActivity().findViewById(R.id.date);
+        slideToUnlock = (TextView) getActivity().findViewById(R.id.slide_unlock);
+        View camera = getActivity().findViewById(R.id.camera_btn);
+        camera.setOnTouchListener(new OnSwipeTouchListener(getActivity()) {
+            public void onSwipeTop() {
+                getActivity().finish();
+                getActivity().overridePendingTransition(0, R.anim.slide_up);
+                safeCameraOpen();
+            }
+        });
+    }
+
+    private void safeCameraOpen() {
+        Intent i = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+        try {
+            PackageManager pm = getActivity().getPackageManager();
+
+            final ResolveInfo mInfo = pm.resolveActivity(i, 0);
+
+            Intent intent = new Intent();
+            intent.setComponent(new ComponentName(mInfo.activityInfo.packageName, mInfo.activityInfo.name));
+            intent.setAction(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_LAUNCHER);
+
+            startActivity(intent);
+        } catch (Exception e) {
+        }
     }
 
     @Override
