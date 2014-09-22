@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="select_backgrounds">
+        <item>System Wallpaper</item>
+        <item>Wallpaper1</item>
+        <item>Wallpaper2</item>
+        <item>Wallpaper3</item>
+    </string-array>
+</resources>

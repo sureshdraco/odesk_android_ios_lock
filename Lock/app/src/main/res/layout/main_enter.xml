@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    android:orientation="vertical"
+    android:background="@drawable/wallpaper02"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto">
+
+    <View
+        android:background="#af000000"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <LinearLayout
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:id="@id/adviewll"
+            android:visibility="gone"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:textAppearance="?android:textAppearanceLarge"
+            android:textColor="@android:color/white"
+            android:gravity="center_vertical"
+            android:layout_gravity="center_vertical"
+            android:id="@id/title"
+            android:background="@drawable/title_bar"
+            android:padding="10.0dip"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:drawableLeft="@drawable/ic_launcher"
+            android:drawablePadding="10.0dip" />
+
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2.0dip">
+
+                    <TextView
+                        android:textSize="14.0sp"
+                        android:textStyle="bold"
+                        android:textColor="#ff999999"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="3.0dip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="3.0dip"
+                        android:text="@string/general"
+                        android:singleLine="true" />
+
+                    <View
+                        android:background="#3a000000"
+                        android:layout_width="fill_parent"
+                        android:layout_height="1.0dip"
+                        android:layout_marginTop="2.0dip" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <Button
+                        android:id="@id/btn_preview"
+                        android:layout_width="0.0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="6.0dip"
+                        android:layout_marginTop="2.0dip"
+                        android:layout_marginRight="3.0dip"
+                        android:layout_marginBottom="2.0dip"
+                        android:text="@string/preview_label"
+                        android:drawableTop="@drawable/ic_preview"
+                        android:layout_weight="1.0"
+                        android:onClick="onClickPreview"
+                        style="@style/icon_btn" />
+
+                    <Button
+                        android:id="@id/btn_settings"
+                        android:layout_width="0.0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="3.0dip"
+                        android:layout_marginTop="2.0dip"
+                        android:layout_marginRight="6.0dip"
+                        android:layout_marginBottom="2.0dip"
+                        android:text="@string/setting_title_label"
+                        android:drawableTop="@drawable/ic_settings"
+                        android:layout_weight="1.0"
+                        android:onClick="onClick"
+                        style="@style/icon_btn" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <Button
+                        android:id="@id/btn_great_apps"
+                        android:layout_width="0.0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="6.0dip"
+                        android:layout_marginRight="3.0dip"
+                        android:layout_marginBottom="2.0dip"
+                        android:text="@string/top_apps_title_label"
+                        android:drawableTop="@drawable/ic_freeapps"
+                        android:layout_weight="1.0"
+                        android:onClick="onClick"
+                        style="@style/icon_btn" />
+
+                    <Button
+                        android:id="@id/btn_syne_apps"
+                        android:layout_width="0.0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="3.0dip"
+                        android:layout_marginRight="6.0dip"
+                        android:layout_marginBottom="2.0dip"
+                        android:text="@string/appsby_syne_title_label"
+                        android:drawableTop="@drawable/ic_appbysyne"
+                        android:layout_weight="1.0"
+                        android:onClick="onClick"
+                        style="@style/icon_btn" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:id="@id/featured"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:textSize="14.0sp"
+                            android:textStyle="bold"
+                            android:textColor="#ff999999"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="3.0dip"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="3.0dip"
+                            android:text="@string/feature_apps"
+                            android:singleLine="true" />
+
+                        <View
+                            android:background="#3a000000"
+                            android:layout_width="fill_parent"
+                            android:layout_height="1.0dip"
+                            android:layout_marginTop="2.0dip" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content">
+
+                        <Button
+                            android:textSize="14.0sp"
+                            android:textStyle="bold"
+                            android:textColor="#ffffffff"
+                            android:ellipsize="end"
+                            android:gravity="center"
+                            android:id="@id/app_remote"
+                            android:background="@drawable/btn_my"
+                            android:padding="16.0dip"
+                            android:layout_width="0.0dip"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="6.0dip"
+                            android:layout_marginTop="2.0dip"
+                            android:layout_marginRight="3.0dip"
+                            android:layout_marginBottom="2.0dip"
+                            android:text="Remote Control for TV"
+                            android:singleLine="true"
+                            android:drawableLeft="@drawable/ic_remote_tv"
+                            android:drawablePadding="8.0dip"
+                            android:layout_weight="1.0"
+                            android:onClick="onClick" />
+
+                        <Button
+                            android:textSize="14.0sp"
+                            android:textStyle="bold"
+                            android:textColor="#ffffffff"
+                            android:ellipsize="end"
+                            android:gravity="center"
+                            android:id="@id/app_firefly"
+                            android:background="@drawable/btn_my"
+                            android:padding="16.0dip"
+                            android:layout_width="0.0dip"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="3.0dip"
+                            android:layout_marginTop="2.0dip"
+                            android:layout_marginRight="6.0dip"
+                            android:layout_marginBottom="2.0dip"
+                            android:text="iOS 8 Lock Screen"
+                            android:singleLine="true"
+                            android:drawableLeft="@drawable/ic_firefly"
+                            android:drawablePadding="8.0dip"
+                            android:layout_weight="1.0"
+                            android:onClick="onClick" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</FrameLayout>

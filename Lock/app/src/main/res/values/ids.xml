@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item type="id" name="time">false</item>
+    <item type="id" name="timell">false</item>
+    <item type="id" name="timeDisplay">false</item>
+    <item type="id" name="date">false</item>
+    <item type="id" name="ad_btn">false</item>
+    <item type="id" name="close_btn">false</item>
+    <item type="id" name="ad_root">false</item>
+    <item type="id" name="ad_image">false</item>
+    <item type="id" name="ad_description">false</item>
+    <item type="id" name="lockview">false</item>
+    <item type="id" name="background">false</item>
+    <item type="id" name="staus_bar">false</item>
+    <item type="id" name="viewpagerLayout">false</item>
+    <item type="id" name="main_layout">false</item>
+    <item type="id" name="backgroud">false</item>
+    <item type="id" name="time_bg">false</item>
+    <item type="id" name="empty">false</item>
+    <item type="id" name="slide_unlock">false</item>
+    <item type="id" name="camera_btn">false</item>
+    <item type="id" name="adviewll">false</item>
+    <item type="id" name="title">false</item>
+    <item type="id" name="btn_preview">false</item>
+    <item type="id" name="btn_settings">false</item>
+    <item type="id" name="btn_great_apps">false</item>
+    <item type="id" name="btn_syne_apps">false</item>
+    <item type="id" name="featured">false</item>
+    <item type="id" name="app_remote">false</item>
+    <item type="id" name="app_firefly">false</item>
+    <item type="id" name="operator">false</item>
+    <item type="id" name="battery_value">false</item>
+</resources>

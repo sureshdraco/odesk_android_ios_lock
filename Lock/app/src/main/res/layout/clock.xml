@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:layout_gravity="center_horizontal"
+    android:id="@id/time"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:id="@id/timell"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true">
+
+        <com.otherlokscreen.bestlockscreenforandroid32.view.CustomTextView
+            android:textSize="@dimen/ios_time_textsize"
+            android:textColor="@android:color/white"
+            android:id="@id/timeDisplay"
+            app:font="roboto_thin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="20:00" />
+    </LinearLayout>
+
+    <com.otherlokscreen.bestlockscreenforandroid32.view.CustomTextView
+        android:textSize="@dimen/ios_date_textsize"
+        android:textColor="@android:color/white"
+        android:gravity="center_horizontal"
+        app:font="roboto_light"
+        android:id="@id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2013-10-20"
+        android:layout_below="@id/timell"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>

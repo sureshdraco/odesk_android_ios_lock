@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="ios_time_textsize">65.0dip</dimen>
+    <dimen name="ios_date_textsize">16.0dip</dimen>
+    <dimen name="ios_sliding_textsize">25.0sp</dimen>
+    <dimen name="ios_sliding_marginbottom">30.0dip</dimen>
+</resources>

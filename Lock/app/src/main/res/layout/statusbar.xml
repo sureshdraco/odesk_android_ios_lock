@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:gravity="center_vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.otherlokscreen.bestlockscreenforandroid32.view.CustomTextView
+        android:textColor="@android:color/white"
+        android:id="@id/operator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:font="roboto_light"
+        android:layout_marginLeft="2.0dip"
+        android:layout_alignParentLeft="true" />
+
+    <com.otherlokscreen.bestlockscreenforandroid32.view.CustomTextView
+        android:textSize="@dimen/ios_battery_textsize"
+        android:textColor="@android:color/white"
+        android:id="@id/battery_value"
+        android:layout_width="wrap_content"
+        app:font="roboto_light"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="2.0dip"
+        android:text="100%"
+        android:singleLine="true"
+        android:layout_alignParentRight="true" />
+</RelativeLayout>
