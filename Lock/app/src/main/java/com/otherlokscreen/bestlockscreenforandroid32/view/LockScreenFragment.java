@@ -12,6 +12,8 @@ import android.content.pm.ResolveInfo;
 import android.graphics.Color;
 import android.hardware.Camera;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -25,6 +27,7 @@ import com.otherlokscreen.bestlockscreenforandroid32.R;
 import com.otherlokscreen.bestlockscreenforandroid32.util.OnSwipeTouchListener;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -33,7 +36,9 @@ import java.util.Date;
 public class LockScreenFragment extends Fragment {
 
     private TextView time, date, slideToUnlock;
-    private Camera mCamera;
+    private Handler handler;
+    private ArrayList<View> textViews;
+    private int slideAnimeIndex = 0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -44,10 +49,33 @@ public class LockScreenFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        handler = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                handleAnimateText();
+            }
+        };
         initView();
+        handler.sendEmptyMessageDelayed(0, 200);
         setupReceiver();
         setupDate();
         setupTime();
+    }
+
+    private void handleAnimateText() {
+        if (slideAnimeIndex == 0) {
+            textViews.get(5).setVisibility(View.INVISIBLE);
+            textViews.get(slideAnimeIndex).setVisibility(View.VISIBLE);
+        } else {
+            textViews.get(slideAnimeIndex).setVisibility(View.VISIBLE);
+            textViews.get(slideAnimeIndex - 1).setVisibility(View.INVISIBLE);
+        }
+        slideAnimeIndex++;
+        if (slideAnimeIndex == 6) {
+            slideAnimeIndex = 0;
+        }
+        handler.sendEmptyMessageDelayed(0, 210);
     }
 
     private void setupReceiver() {
@@ -80,6 +108,7 @@ public class LockScreenFragment extends Fragment {
     }
 
     private void initView() {
+        initTextViewFragments();
         time = (TextView) getActivity().findViewById(R.id.timeDisplay);
         date = (TextView) getActivity().findViewById(R.id.date);
         slideToUnlock = (TextView) getActivity().findViewById(R.id.slide_unlock);
@@ -91,6 +120,16 @@ public class LockScreenFragment extends Fragment {
                 safeCameraOpen();
             }
         });
+    }
+
+    private void initTextViewFragments() {
+        textViews = new ArrayList<View>();
+        textViews.add(getActivity().findViewById(R.id.slide_unlock1));
+        textViews.add(getActivity().findViewById(R.id.slide_unlock2));
+        textViews.add(getActivity().findViewById(R.id.slide_unlock3));
+        textViews.add(getActivity().findViewById(R.id.slide_unlock4));
+        textViews.add(getActivity().findViewById(R.id.slide_unlock5));
+        textViews.add(getActivity().findViewById(R.id.slide_unlock6));
     }
 
     private void safeCameraOpen() {
