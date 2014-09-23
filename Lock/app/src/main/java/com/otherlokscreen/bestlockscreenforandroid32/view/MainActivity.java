@@ -8,6 +8,8 @@ import android.widget.Toast;
 
 import com.otherlokscreen.bestlockscreenforandroid32.R;
 
+import junit.framework.Test;
+
 public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,8 +28,11 @@ public class MainActivity extends Activity {
     }
 
     public void onClickGreatApps(View view) {
-        Toast.makeText(this, "Not Implemented", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "Not Implemented", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, TestActivity.class);
+        startActivity(intent);
     }
+
 
     public void onClickSydApps(View view) {
         Toast.makeText(this, "Not Implemented", Toast.LENGTH_SHORT).show();

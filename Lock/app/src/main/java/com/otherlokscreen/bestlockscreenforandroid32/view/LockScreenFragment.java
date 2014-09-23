@@ -1,7 +1,6 @@
 package com.otherlokscreen.bestlockscreenforandroid32.view;
 
 
-import android.animation.ObjectAnimator;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
@@ -9,22 +8,25 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.graphics.Color;
-import android.hardware.Camera;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.Display;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.BounceInterpolator;
+import android.view.animation.TranslateAnimation;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.otherlokscreen.bestlockscreenforandroid32.R;
-import com.otherlokscreen.bestlockscreenforandroid32.util.OnSwipeTouchListener;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -33,12 +35,14 @@ import java.util.Date;
 /**
  * A simple {@link android.support.v4.app.Fragment} subclass.
  */
-public class LockScreenFragment extends Fragment {
+public class LockScreenFragment extends Fragment implements View.OnTouchListener {
 
     private TextView time, date, slideToUnlock;
     private Handler handler;
     private ArrayList<View> textViews;
     private int slideAnimeIndex = 0;
+    private FrameLayout rootLayout;
+    private int height;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -111,15 +115,77 @@ public class LockScreenFragment extends Fragment {
         initTextViewFragments();
         time = (TextView) getActivity().findViewById(R.id.timeDisplay);
         date = (TextView) getActivity().findViewById(R.id.date);
+        rootLayout = (FrameLayout) getActivity().findViewById(android.R.id.content);
+        Display display = getActivity().getWindowManager().getDefaultDisplay();
+        rootLayout.setMinimumWidth(display.getWidth());
+        height = display.getHeight();
+        rootLayout.setMinimumHeight(display.getHeight());
         slideToUnlock = (TextView) getActivity().findViewById(R.id.slide_unlock);
         View camera = getActivity().findViewById(R.id.camera_btn);
-        camera.setOnTouchListener(new OnSwipeTouchListener(getActivity()) {
-            public void onSwipeTop() {
-                getActivity().finish();
-                getActivity().overridePendingTransition(0, R.anim.slide_up);
-                safeCameraOpen();
-            }
-        });
+        camera.setOnTouchListener(this);
+    }
+
+    public boolean onTouch(View view, MotionEvent event) {
+        final int Y = (int) event.getRawY();
+        final LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) rootLayout.getLayoutParams();
+        TranslateAnimation translateAnimation;
+        int action = event.getAction() & MotionEvent.ACTION_MASK;
+        Log.d("drag", "Event: " + action);
+        switch (event.getAction() & MotionEvent.ACTION_MASK) {
+            case MotionEvent.ACTION_DOWN:
+//                safeCameraOpen();
+                translateAnimation = new TranslateAnimation(layoutParams.leftMargin, layoutParams.leftMargin, Y - height, layoutParams.topMargin);
+                translateAnimation.setFillAfter(true);
+                translateAnimation.setFillEnabled(true);
+                rootLayout.startAnimation(translateAnimation);
+                break;
+            case MotionEvent.ACTION_UP:
+                Log.d("drag", "ACTION_UP");
+                if (Y < height / 2) {
+                    translateAnimation = new TranslateAnimation(layoutParams.leftMargin, layoutParams.leftMargin, Y - height, -height);
+                    translateAnimation.setDuration(500);
+                    translateAnimation.setFillAfter(true);
+                    translateAnimation.setFillEnabled(true);
+                    rootLayout.startAnimation(translateAnimation);
+                    translateAnimation.setAnimationListener(new Animation.AnimationListener() {
+                        @Override
+                        public void onAnimationStart(Animation animation) {
+                        }
+
+                        @Override
+                        public void onAnimationEnd(Animation animation) {
+                            getActivity().finish();
+                        }
+
+                        @Override
+                        public void onAnimationRepeat(Animation animation) {
+                        }
+                    });
+                    return true;
+                }
+                translateAnimation = new TranslateAnimation(layoutParams.leftMargin, layoutParams.leftMargin, Y - height, 0);
+                translateAnimation.setDuration(1000);
+                translateAnimation.setFillAfter(true);
+                translateAnimation.setFillEnabled(true);
+                translateAnimation.setInterpolator(new BounceInterpolator());
+                rootLayout.startAnimation(translateAnimation);
+                break;
+            case MotionEvent.ACTION_POINTER_DOWN:
+                Log.d("drag", "ACTION_POINTER_DOWN");
+                break;
+            case MotionEvent.ACTION_POINTER_UP:
+                Log.d("drag", "ACTION_POINTER_UP");
+                break;
+            case MotionEvent.ACTION_MOVE:
+                translateAnimation = new TranslateAnimation(layoutParams.leftMargin, layoutParams.leftMargin, Y - height, layoutParams.topMargin);
+                translateAnimation.setDuration(10000);
+                translateAnimation.setFillAfter(true);
+                translateAnimation.setFillEnabled(true);
+                rootLayout.startAnimation(translateAnimation);
+                break;
+        }
+        rootLayout.invalidate();
+        return true;
     }
 
     private void initTextViewFragments() {
