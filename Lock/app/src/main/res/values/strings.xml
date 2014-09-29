@@ -35,7 +35,7 @@
     <string name="gallery_title">Wallpapers</string>
     <string name="share">Share</string>
     <string name="preview">Preview</string>
-    <string name="moreapp">Apps by SydneyApps</string>
+    <string name="moreapp">Apps by Featured Apps</string>
     <string name="ok">Ok</string>
     <string name="cancel">Cancel</string>
     <string name="general">General</string>
@@ -45,7 +45,7 @@
     <string name="exitsure">Exit</string>
     <string name="exitcancel">Cancel</string>
     <string name="exitgetmore">Games</string>
-    <string name="appsby_syne_title_label">SydneyApps</string>
+    <string name="appsby_syne_title_label">Featured Apps</string>
     <string name="top_apps_title_label">Great Apps</string>
     <string name="feature_apps">Feature Apps</string>
     <string name="setting_title_label">Settings</string>

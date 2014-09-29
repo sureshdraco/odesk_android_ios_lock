@@ -23,6 +23,7 @@
         </activity>
 
         <activity
+            android:screenOrientation="portrait"
             android:name=".view.LockScreenActivity"
             android:excludeFromRecents="true" />
 
@@ -30,7 +31,9 @@
             android:name=".view.SettingsActivity"
             android:theme="@android:style/Theme.Black.NoTitleBar" />
 
-        <activity android:name=".view.TestActivity" android:theme="@style/Theme.IAPTheme"/>
+        <activity
+            android:name=".view.TestActivity"
+            android:theme="@style/Theme.IAPTheme" />
 
         <service android:name=".controller.MyService" />
 
