@@ -16,6 +16,6 @@ public class PreferenceUtil {
 
     public static String getSelectedWallpaper(Context context) {
         return PreferenceManager.getDefaultSharedPreferences(context)
-                .getString(context.getString(R.string.wallpaper), "wallpaper01");
+                .getString(context.getString(R.string.wallpaper), "Wallpaper1");
     }
 }

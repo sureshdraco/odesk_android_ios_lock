@@ -1,6 +1,7 @@
 package com.otherlokscreen.bestlockscreenforandroid32.view;
 
 
+import android.app.WallpaperManager;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
@@ -24,9 +25,11 @@ import android.view.animation.BounceInterpolator;
 import android.view.animation.TranslateAnimation;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.otherlokscreen.bestlockscreenforandroid32.R;
+import com.otherlokscreen.bestlockscreenforandroid32.util.PreferenceUtil;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -41,7 +44,7 @@ public class LockScreenFragment extends Fragment implements View.OnTouchListener
     private Handler handler;
     private ArrayList<View> textViews;
     private int slideAnimeIndex = 0;
-    private FrameLayout rootLayout;
+    private RelativeLayout rootLayout;
     private int height;
 
     @Override
@@ -61,10 +64,24 @@ public class LockScreenFragment extends Fragment implements View.OnTouchListener
             }
         };
         initView();
+        setupBackground();
         handler.sendEmptyMessageDelayed(0, 200);
         setupReceiver();
         setupDate();
         setupTime();
+    }
+
+    private void setupBackground() {
+        if (PreferenceUtil.getSelectedWallpaper(getActivity()).equals("Wallpaper1")) {
+            rootLayout.setBackgroundDrawable(getResources().getDrawable(R.drawable.wallpaper01));
+        } else if (PreferenceUtil.getSelectedWallpaper(getActivity()).equals("Wallpaper2")) {
+            rootLayout.setBackgroundDrawable(getResources().getDrawable(R.drawable.wallpaper02));
+        } else if (PreferenceUtil.getSelectedWallpaper(getActivity()).equals("Wallpaper3")) {
+            rootLayout.setBackgroundDrawable(getResources().getDrawable(R.drawable.wallpaper03));
+        } else {
+            //system wallpaper
+            rootLayout.setBackgroundDrawable(WallpaperManager.getInstance(getActivity()).getDrawable());
+        }
     }
 
     private void handleAnimateText() {
@@ -115,7 +132,7 @@ public class LockScreenFragment extends Fragment implements View.OnTouchListener
         initTextViewFragments();
         time = (TextView) getActivity().findViewById(R.id.timeDisplay);
         date = (TextView) getActivity().findViewById(R.id.date);
-        rootLayout = (FrameLayout) getActivity().findViewById(android.R.id.content);
+        rootLayout = (RelativeLayout) getActivity().findViewById(R.id.wallpaper);
         Display display = getActivity().getWindowManager().getDefaultDisplay();
         rootLayout.setMinimumWidth(display.getWidth());
         height = display.getHeight();
@@ -127,13 +144,12 @@ public class LockScreenFragment extends Fragment implements View.OnTouchListener
 
     public boolean onTouch(View view, MotionEvent event) {
         final int Y = (int) event.getRawY();
-        final LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) rootLayout.getLayoutParams();
+        final RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) rootLayout.getLayoutParams();
         TranslateAnimation translateAnimation;
         int action = event.getAction() & MotionEvent.ACTION_MASK;
         Log.d("drag", "Event: " + action);
         switch (event.getAction() & MotionEvent.ACTION_MASK) {
             case MotionEvent.ACTION_DOWN:
-//                safeCameraOpen();
                 translateAnimation = new TranslateAnimation(layoutParams.leftMargin, layoutParams.leftMargin, Y - height, layoutParams.topMargin);
                 translateAnimation.setFillAfter(true);
                 translateAnimation.setFillEnabled(true);
@@ -142,25 +158,8 @@ public class LockScreenFragment extends Fragment implements View.OnTouchListener
             case MotionEvent.ACTION_UP:
                 Log.d("drag", "ACTION_UP");
                 if (Y < height / 2) {
-                    translateAnimation = new TranslateAnimation(layoutParams.leftMargin, layoutParams.leftMargin, Y - height, -height);
-                    translateAnimation.setDuration(500);
-                    translateAnimation.setFillAfter(true);
-                    translateAnimation.setFillEnabled(true);
-                    rootLayout.startAnimation(translateAnimation);
-                    translateAnimation.setAnimationListener(new Animation.AnimationListener() {
-                        @Override
-                        public void onAnimationStart(Animation animation) {
-                        }
-
-                        @Override
-                        public void onAnimationEnd(Animation animation) {
-                            getActivity().finish();
-                        }
-
-                        @Override
-                        public void onAnimationRepeat(Animation animation) {
-                        }
-                    });
+                    getActivity().finish();
+                    safeCameraOpen();
                     return true;
                 }
                 translateAnimation = new TranslateAnimation(layoutParams.leftMargin, layoutParams.leftMargin, Y - height, 0);
